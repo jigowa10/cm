@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM原稿抽出ツール</title>
+</head>
+<body>
+    <h1>CM原稿抽出ツール</h1>
+    <form method="post" enctype="multipart/form-data">
+        <label for="file">Wordファイルをアップロード:</label><br>
+        <input type="file" id="file" name="file" required><br><br>
+        <input type="submit" value="送信">
+    </form>
+    
+    {% if broadcast_info %}
+        <h2>放送に関する情報:</h2>
+        <ul>
+            {% for key, value in broadcast_info.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if cm_script %}
+        <h2>抽出されたCM原稿の本文:</h2>
+        <p>{{ cm_script }}</p>
+    {% endif %}
+
+    {% if reading_time %}
+        <h2>推定読み上げ時間:</h2>
+        <p>{{ reading_time }} 秒</p>
+    {% endif %}
+</body>
+</html>
